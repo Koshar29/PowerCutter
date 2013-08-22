@@ -21,14 +21,15 @@ public class CutTrees extends Node {
 			PowerCutter.isCutting = false;
 			return;
 		}
-		if (!PowerCutter.myPlayer.isInMotion()) {
-			for (GameObject o : ctx.objects.select().id(Constants.TREE_IDS).nearest()) {
-				if (o.getName().toLowerCase().equals("oak") && ctx.skills.getLevel(Skills.WOODCUTTING) < 15) {
-					continue;
-				}
+		if (ctx.skills.getLevel(Skills.WOODCUTTING) < 15) {
+			for (GameObject o : ctx.objects.select().id(Constants.TREE_IDS).nearest().first()) {
 				ctx.camera.turnTo(o.getLocation().randomize(2, 4));
-				o.interact("Chop down");
-				break;
+				o.click();
+			}
+		} else {
+			for (GameObject o : ctx.objects.select().id(Constants.ALL_TREE_IDS).nearest().first()) {
+				ctx.camera.turnTo(o.getLocation().randomize(2, 4));
+				o.click();
 			}
 		}
 		sleep(2000, 3000);

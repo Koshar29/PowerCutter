@@ -23,9 +23,9 @@ import Koshar29.VarrockPowerCutting.Jobs.WalkToTrees;
 
 @Manifest(authors = { "koshar29" }, name = "Varrock Power Cutting " + PowerCutter.version, description = "Chops trees near varrock west and burns them using Bonfires.")
 public class PowerCutter extends PollingScript implements PaintListener {
-	public static final double version = 1.1;
+	public static final double version = 1.2;
 	public static Player myPlayer;
-	public static boolean isCutting = true, isWidgetLoaded = false;
+	public static boolean isCutting = true;
 	private final ArrayList<Node> nodes = new ArrayList<>();
 	private int woodcutEXPstart = 0, firemakingEXPstart = 0;
 	private long startTime = -1;

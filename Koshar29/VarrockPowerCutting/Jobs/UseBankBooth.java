@@ -18,10 +18,9 @@ public class UseBankBooth extends Node {
 	public void execute() {
 		PowerCutter.console("Using Bank Booth");
 		if (!ctx.objects.select().id(Bank.BANK_BOOTH_IDS).isEmpty()) {
-			for (GameObject booth : ctx.objects.id(Bank.BANK_BOOTH_IDS).nearest()) {
+			for (GameObject booth : ctx.objects.id(Bank.BANK_BOOTH_IDS).nearest().first()) {
 				booth.interact("Bank");
 				sleep(250, 600);
-				break;
 			}
 		}
 	}

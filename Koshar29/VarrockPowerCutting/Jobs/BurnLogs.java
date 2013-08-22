@@ -2,9 +2,7 @@ package Koshar29.VarrockPowerCutting.Jobs;
 
 import org.powerbot.script.methods.Hud;
 import org.powerbot.script.methods.MethodContext;
-import org.powerbot.script.wrappers.Component;
 import org.powerbot.script.wrappers.Item;
-import org.powerbot.script.wrappers.Widget;
 
 import Koshar29.VarrockPowerCutting.Constants;
 import Koshar29.VarrockPowerCutting.Node;
@@ -35,30 +33,20 @@ public class BurnLogs extends Node {
 				for (Item i : ctx.backpack.select().id(Constants.LOG_IDS).first()) {
 					i.interact("Light");
 					sleep(2000, 2400);
-					break;
 				}
 			}
 		} else {
-			if (PowerCutter.isWidgetLoaded) {
-				for (Widget w : ctx.widgets.getLoaded()) {
-					if (w.getIndex() == Constants.CRAFTING_MENU) {
-						Component c = w.getComponent(39);
-						c.click();
-						PowerCutter.isWidgetLoaded = false;
-						sleep(1000, 1100);
-						break;
-					}
-				}
+			if (ctx.widgets.get(Constants.CRAFTING_MENU).isValid()) {
+				ctx.widgets.get(Constants.CRAFTING_MENU, 39).click();
+				sleep(1000, 1500);
 			} else {
 				if (PowerCutter.myPlayer.getStance() != Constants.BONFIRE_STANCE && !PowerCutter.myPlayer.isInMotion()) {
 					PowerCutter.console("Burning Logs");
 					for (Item i : ctx.backpack.select().id(Constants.LOG_IDS).first()) {
 						i.interact("Craft");
-						PowerCutter.isWidgetLoaded = true;
-						break;
+						sleep(1000, 1200);
 					}
 				}
-				sleep(1000, 1200);
 			}
 		}
 	}
